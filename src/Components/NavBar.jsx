@@ -9,7 +9,7 @@ const navItems = [
     { path: "/contact", label: "Contact" },
 ];
 
-const NavItem = (handleToggle) => {
+const NavItem = ({handleToggle}) => {
     return (
         <ul className="flex flex-col md:flex-row items-center md:space-x-8 gap-8">
             {navItems.map((NavItem, index) => (
@@ -41,20 +41,20 @@ const NavBar = () => {
                     Panto
                 </Link>
                 {/* hamburger menu for mobile  */}
-                <div className="md:hidden text-xl cursor-pointer hover:text-yellow-600" onClick={handleToggle}>
+                <div className="md:hidden text-xl cursor-pointer hover:text-yellow-600" onClick={handleToggle} >
                     {
                         isOpen ? null : <FaBars/>
                     }
                 </div>
                 {/* mobile menu items  */}
-                <div className={`fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50`}>
+                <div className={`fixed top-0 left-0 w-0 h-screen bg-amber-500 bg-opacity-80 flex-col items-center justify-center space-y-8 text-white transition-transform transform ${isOpen? 'translate-x-0': '-translate-x-full'} md:hidden`}>
                     <div className="cursor-pointer" onClick={handleToggle}><FaTimes/></div>
-                    <NavItem handleToggle={handleToggle}/>
+                    <NavItem/>
                 </div>
 
                 {/* mid section -- menu item */}
                 <div  className="hidden md:flex">
-                    <NavItem  />
+                    <NavItem handleToggle= {handleToggle}  />
                 </div>
 
                 {/* cart icon  */}
